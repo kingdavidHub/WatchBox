@@ -1,32 +1,60 @@
-import { Button } from "@/components/ui/button";
-import { bebasNeue } from "../fonts";
-import { cn } from "@/lib/utils";
+import SearchForm from "@/components/SearchForm";
+import StartupCard from "@/components/StartupCard";
 
-const Home = () => {
+const Home = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ query?: string }>;
+}) => {
+  const query = (await searchParams).query;
+
+  const posts = [
+    {
+      _createdAt: new Date(),
+      views: 100,
+      author: {
+        _id: 1,
+        name: "kingdavid"
+      },
+      _id: 1,
+      description: "This is a description",
+      image: "https://images.unsplash.com/photo-1706545602642-fa0a6c3a540a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      category: "Travel",
+      title: "Traveling the world",
+    },
+  ];
   return (
-    <section>
-      <div className="hero-wrapper">
-        <div className="hero-overlay flex-between">
-          <div className="p-10 flex-between w-full hero-container">
-            {/* left section */}
-            <div className="flex-1 flex-cols gap-4 p-6">
-              <h1 className={cn(bebasNeue.variable, "text-white font-extrabold uppercase text-3xl" )}>Furiosa: A Mad Max Saga</h1>
-              <p className="text-white">
-                In &quot;Furioso: A Mad Max Saga,&quot; the fierce warrior
-                Furiosa embarks on a perilous <br /> journey through a post-apocalyptic
-                wasteland, battling ruthless enemies to <br /> reclaim her homeland.
-              </p>
-              <Button className="w-[10rem]">Watch</Button>
-            </div>
+    <>
+      <section className="pink_container">
+        <h1 className="heading">
+          Pitch Your Startup, <br />
+          Connect With, Entrepreneur
+        </h1>
+        <p className="sub-heading !max-w-3xl">
+          Submit Ideas, Vote on Pitches, and Get Noticed in virtual,
+          Competitions.
+        </p>
+        <SearchForm query={query} />
+      </section>
+      <section className="section_container">
+        <p className="text-30-semibold">
+          {query ? `Search results for "${query}" ` : "All Startups"}
+        </p>
 
-            {/* Right section */}
-            <div className="flex-1">
-              <h1>image</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <ul className="mt-7 card_grid">
+          {
+            posts?.length > 0 ? (
+              posts.map((post: StartupCardType, index: number) => (
+                <StartupCard key={post?._id} post={post} />
+              ))
+            ) : (
+              <p className="no-results">No startups found</p>
+            )
+          }
+        </ul>
+      </section>
+    </>
   );
 };
+
 export default Home;

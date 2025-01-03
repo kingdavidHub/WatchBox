@@ -1,11 +1,5 @@
 import Navbar from "@/components/Navbar";
-import { Metadata } from "next";
-import "./styles.css";
 
-export const metadata: Metadata = {
-  title: "Home",
-  description: "",
-};
 
 export default function RootLayout({
   children,
@@ -13,9 +7,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <header>{/* <Navbar /> */}</header>
+    <main className="font-work-sans">
+      <Navbar />
       {children}
-    </>
+    </main>
   );
 }
