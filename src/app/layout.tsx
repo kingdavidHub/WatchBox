@@ -1,17 +1,20 @@
-import { Metadata } from "next";
-
-
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Homepage",
-  description: "A movie app to save and bookmark your favorite movies."
-}
+  title: "Home",
+  description:
+    "Welcome to Watchbox - Your ultimate destination for premium watches.",
+};
 
-const RootLayout = ({ children }: {
-  children: Readonly<{children: React.ReactNode}>
-}) => {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <div>layout</div>
-  )
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
 }
-export default RootLayout;
