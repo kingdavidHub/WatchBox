@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { MovieGrid } from "@/components/MovieGrid";
 import { Footer } from '@/components/Footer'
+import axios from "axios";
 
 const initialMovies = [
   {
@@ -90,6 +91,17 @@ export default function Home() {
       )
     );
   };
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      // Fetch Movies From IMDB API
+      const res = await axios.get("https://api.themoviedb.org/3/trending/movie/week?api_key=7b3f7b1f7");
+      console.log(res);
+    }
+
+
+    fetchMovies()
+  },[])
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-900">
