@@ -95,6 +95,7 @@ export default function Home() {
   useEffect(() => {
     const fetchMovies = async () => {
       // Fetch Movies From IMDB API
+      // search functionality 
       const res = await axios.get("https://api.themoviedb.org/3/trending/movie/week?api_key=7b3f7b1f7");
       console.log(res);
     }
