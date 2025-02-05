@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-
+import endlessConstellation from "@/assets/images/endless-constellation.png";
 export default {
     darkMode: ["class"],
     content: [
@@ -55,7 +55,10 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+			backgroundImage: {
+			  // 'endless-constellation':  `url(${endlessConstellation})`,
+			}
   	}
   },
   plugins: [require("tailwindcss-animate")],
